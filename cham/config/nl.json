@@ -1,0 +1,48 @@
+{
+    "cloud_run_back_end": "https://charm-backend-simulation-707948237212.europe-west1.run.app",
+    "query_params_dict": {
+        "base_tables": {
+            "control": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_CONTROL",
+            "mitre_technique": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_MITRE",
+            "project": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_PROJECT",
+            "risk": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_RISK",
+            "ts": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_THREAT_SCENARIOS"
+        },
+        "mapping_tables": {
+            "ts_controls_mapping": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_TS_CONTROLS_MAPPING",
+            "ts_mitre_mapping": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_TS_MITRE_MAPPING",
+            "ts_controls_mitre_mapping": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_TS_CONTROLS_MITRE_MAPPING",
+            "controls_project_mapping": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_INPUT_CONTROLS_PROJECT_MAPPING"
+        },
+        "historical": {
+            "historical_parameters": "vf-grp-aib-prd-mc2-cyb-lab.features.CHARM_HISTOTICAL_PARAMETERS"
+        }
+    },
+    "charm_model_input_dict": {
+        "sensitivity_analysis": {
+            "enabled": true,
+            "control_to_improve": null
+        },
+        "likelihood_mitigation": {
+            "control_score_min": 1,
+            "practice_mitigation": 0.95
+        },
+        "impact_mitigation": {
+            "practice_mitigation": 0.95,
+            "chosen_project": 2,
+            "prior_project": 1,
+            "current_project": 2
+        },
+        "control_maturity": {
+            "type": "uplift_mode",
+            "target": "95",
+            "effective_multiplier": "95"
+        },
+        "simulation": {
+            "n_years": "100",
+            "max_num_events": "500",
+            "simulation_size": "50000",
+            "likelihood_calculation": "Use distribution"
+        }
+    }
+}

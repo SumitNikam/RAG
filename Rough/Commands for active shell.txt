@@ -1,0 +1,8 @@
+# Active Virtual enviroment
+source webapp/bin/activate
+
+# Change Directory
+cd vf-mc2-aa-grp-charm-webapp-frontend/
+
+# Python commonad for streamlit
+python3 -m streamlit run app.py local_flag --server.address=127.0.0.1 --server.enableCORS=false

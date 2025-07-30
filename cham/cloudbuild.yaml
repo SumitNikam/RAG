@@ -1,0 +1,47 @@
+substitutions:
+  # Switch to the appropriate pool for your environment; this will be different between alpha/beta/zeta
+  _REGION: europe-west1
+  _CLOUD_BUILD_POOL: projects/vf-grp-aib-prd-sharedpool/locations/${_REGION}/workerPools/worker_pool
+
+options:
+  automapSubstitutions: true
+  pool:
+    name: ${_CLOUD_BUILD_POOL}
+
+serviceAccount: projects/${PROJECT_ID}/serviceAccounts/cloudbuild@${PROJECT_ID}.iam.gserviceaccount.com
+logsBucket: gs://${PROJECT_ID}-logs
+timeout: 3600s
+
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+  'build',
+  '--network=cloudbuild',
+  '-f','Dockerfile',
+  '-t', 'europe-west1-docker.pkg.dev/$_PROJECT_ID/docker-images/$_IMAGE_NAME:$SHORT_SHA',
+  '-t', 'europe-west1-docker.pkg.dev/$_PROJECT_ID/docker-images/$_IMAGE_NAME:latest',
+  '.'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+  'push',
+  '-a',
+  'europe-west1-docker.pkg.dev/$_PROJECT_ID/docker-images/$_IMAGE_NAME'
+  ]
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: 
+  - 'run'
+  - 'deploy'
+  - '$_CLOUD_RUN_NAME'
+  - '--service-account'
+  - '$_PROJECT_ID-sa@$_PROJECT_ID.iam.gserviceaccount.com'
+  - '--image'
+  - 'europe-west1-docker.pkg.dev/$_PROJECT_ID/docker-images/$_IMAGE_NAME:latest'
+  - '--region'
+  - 'europe-west1'
+  - '--project'
+  - '$_PROJECT_ID'
+  - '--vpc-connector'
+  - 'projects/$_PROJECT_ID/locations/europe-west1/connectors/cf-vpc-connector'
+images: ['europe-west1-docker.pkg.dev/$_PROJECT_ID/docker-images/$_IMAGE_NAME']

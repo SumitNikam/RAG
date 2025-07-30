@@ -1,0 +1,33 @@
+Delivery:
+1. Creation of requirement.txt file for smooth deployment of python based projects.
+2. Creation of prediction interval function for MLFC project
+3. Creation of library package (API) for forecasting techniques
+4. Enhance knowledge of transformers specially wrt NLP
+5. Creation of connection between Oracle DB and Python
+
+New:-
+
+Created functions for MLFC/Autoforecasting projects. EDA completed on HR survival analysis. Writting python script for HR Survival analysis project for data preparation. Also used kaplan meier for HR Survival analysis. Helping team members to solve there problems and understand the use cases. Created chatbot using RASA framework for bussiness usecase. 
+
+Old:-
+
+Created requirement.txt file for NLP project for avoiding versions issue. Created function of confidence interval for MLFC project as per business requirement. Learnt BERT Transformer and implemented it in a Graph Analytics project for finding simmilarity betweeen two columns.Implemented python to  Oracle Db connection for ML in MPR project. Supported Ad hoc request for business. Helping team member in outlier detection.
+
+
+Learning & Development:
+1. Learn GCP fundamentals and aim for GCP certification within march.
+2. Enhance creation of PowerBi Dashboard
+
+On going self learning for GCP. Created dashboard into PowerBi for EuroMart store. Also create same dashboard into data studio.
+
+
+Individual growth:
+1. Participate in kaggle competition which will help me improve my coding knowledge and understanding of new concepts.
+2. Involvement in activities like peer review, code jam and guiding new team members
+3. 
+
+Learnt different techniques from Kaggle for Data evaluation, Model selections and many more concepts. Given knowledge transfer session to teams regarding confidence interval using Drift method. Learnt and exploring different deep learning techniques related to CNN. Helping team members to educate on coding standards and any issue with the code.
+
+
+
+101412046855

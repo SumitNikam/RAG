@@ -1,0 +1,621 @@
+-- SQL Tutorial
+
+-- SELECT
+-- Used to select data from a database.
+
+SELECT * FROM Employees;
+
+-- FROM
+--Specifies the table to select or delete data from.
+
+SELECT Name FROM Employees;
+
+-- WHERE
+-- Filters records.
+
+SELECT * FROM Employees WHERE Age > 30;
+
+-- INSERT
+-- Inserts new data into a table.
+
+INSERT INTO Employees (Name, Age)
+VALUES ('John', 28);
+
+-- UPDATE
+-- Modifies existing data in a table.
+
+UPDATE Employees SET Age = 30
+WHERE Name = 'John';
+
+-- DELETE
+-- Deletes data from a table.
+
+DELETE FROM Employees
+WHERE Name = 'John';
+
+-- CREATE TABLE
+-- Creates a new table.
+
+CREATE TABLE Employees
+(ID int, Name varchar(255));
+
+-- DROP TABLE
+-- Deletes a table.
+
+DROP TABLE Employees;
+
+-- ALTER TABLE
+-- Modifies an existing table.
+
+ALTER TABLE Employees ADD Salary int;
+
+-- INNER JOIN
+-- Returns records with matching values in both tables.
+
+SELECT * FROM Employees
+INNER JOIN Departments
+ON Employees.DeptID = Departments.ID;
+
+-- LEFT JOIN
+-- Returns all records from the left table, and matched records from the right table.
+
+SELECT * FROM Employees
+LEFT JOIN Departments
+ON Employees.DeptID = Departments.ID;
+
+-- RIGHT JOIN
+-- Returns all records from the right table, and matched records from the left table.
+
+SELECT * FROM Employees
+RIGHT JOIN Departments
+ON Employees.DeptID = Departments.ID;
+
+-- FULL JOIN
+-- Returns all records when there is a match in either left or right table.
+
+SELECT * FROM Employees
+FULL JOIN Departments
+ON Employees.DeptID = Departments.ID;
+
+-- CROSS JOIN
+-- Returns the Cartesian product of the two tables.
+
+SELECT * FROM Employees
+CROSS JOIN Departments;
+
+-- GROUP BY
+-- Groups rows that have the same values into summary rows.
+
+SELECT COUNT(*), Department
+FROM Employees
+GROUP BY Department;
+
+-- HAVING
+-- Filters records that work on summarized GROUP BY results.
+
+SELECT COUNT(*), Department
+FROM Employees
+GROUP BY Department HAVING COUNT(*) > 5;
+
+-- ORDER BY
+-- Sorts the result set in ascending or descending order.
+
+SELECT * FROM Employees
+ORDER BY Age DESC;
+
+-- DISTINCT
+-- Selects only distinct (different) values.
+
+SELECT DISTINCT Department
+FROM Employees;
+
+-- LIMIT
+-- Specifies the number of records to return.
+
+SELECT * FROM Employees LIMIT 10;
+
+-- OFFSET
+-- Specifies the offset of the first row to return.
+
+SELECT * FROM Employees LIMIT 5 OFFSET 10;
+
+-- UNION
+-- Combines the result set of two or more
+
+SELECT statements.
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers;
+
+-- UNION ALL
+-- Combines the result set of two or more
+
+SELECT statements, including
+duplicates.
+SELECT City FROM Customers
+UNION ALL
+SELECT City FROM Suppliers;
+
+-- INTERSECT
+-- Returns the intersection of two or more
+
+SELECT statements.
+SELECT City FROM Customers
+INTERSECT
+SELECT City FROM Suppliers;
+
+-- EXCEPT
+-- Returns the difference between two SELECT statements.
+
+SELECT City FROM Customers
+EXCEPT
+SELECT City FROM Suppliers;
+
+-- IN
+-- Checks for values within a set.
+
+SELECT * FROM Employees
+WHERE Department IN ('HR', 'Finance');
+
+-- BETWEEN
+-- Selects values within a given range.
+
+SELECT * FROM Employees
+WHERE Age BETWEEN 25 AND 30;
+
+-- LIKE
+-- Searches for a specified pattern in a column.
+
+SELECT * FROM Employees
+WHERE Name LIKE 'J%';
+
+-- IS NULL
+-- Tests for empty (NULL) values.
+
+SELECT * FROM Employees
+WHERE Age IS NULL;
+
+-- IS NOT NULL
+-- Tests for non-empty (NOT NULL) values.
+
+SELECT * FROM Employees
+WHERE Age IS NOT NULL;
+
+-- CASE
+-- Returns value based on a condition.
+
+SELECT Name, Age, CASE
+WHEN Age > 30 THEN 'Senior' ELSE 'Junior' END
+FROM Employees;
+
+-- COALESCE
+-- Returns the first non-null value in a list.
+
+SELECT COALESCE(Address, 'No Address')
+FROM Employees;
+
+-- NULLIF
+-- Returns NULL if two expressions are equal.
+
+SELECT NULLIF(Salary, 0) FROM Employees;
+
+-- CAST
+-- Converts a data type into another data type.
+
+SELECT CAST(Age AS varchar) FROM Employees;
+
+-- CONVERT
+-- Converts a data type into another data type with style options.
+
+SELECT CONVERT(varchar, Age, 1)
+FROM Employees;
+
+-- SUBSTRING
+-- Extracts characters from a string.
+
+SELECT SUBSTRING(Name, 1, 2)
+FROM Employees;
+
+-- LENGTH
+-- Returns the length of a string.
+
+SELECT LENGTH(Name)
+FROM Employees;
+
+-- TRIM
+-- Removes spaces or specified characters from both ends of a string.
+
+SELECT TRIM(Name) FROM Employees;
+
+-- UPPER
+-- Converts a string to uppercase.
+
+SELECT UPPER(Name) FROM Employees;
+
+-- LOWER
+-- Converts a string to lowercase.
+
+SELECT LOWER(Name) FROM Employees;
+
+-- REPLACE
+-- Replaces occurrences of a specified string.
+
+SELECT REPLACE(Name, 'John', 'Jon')
+FROM Employees;
+
+-- CHARINDEX
+-- Returns the position of a substring in a string.
+
+SELECT CHARINDEX('a', Name)
+FROM Employees;
+
+-- ROUND
+-- Rounds a number to a specified number of decimal places.
+
+SELECT ROUND(Salary, 2) FROM Employees;
+
+-- AVG
+-- Returns the average value of a numeric column.
+
+SELECT AVG(Salary) FROM Employees;
+
+-- COUNT
+-- Returns the number of rows that matches a specified criterion.
+
+SELECT COUNT(*) FROM Employees;
+
+-- SUM
+-- Returns the total sum of a numeric column.
+
+SELECT SUM(Salary) FROM Employees;
+
+-- MAX
+-- Returns the maximum value in a set.
+
+SELECT MAX(Salary) FROM Employees;
+
+-- MIN
+-- Returns the minimum value in a set.
+
+SELECT MIN(Salary) FROM Employees;
+
+-- NOW
+-- Returns the current date and time.
+
+SELECT NOW();
+
+-- CURDATE
+-- Returns the current date.
+
+SELECT CURDATE();
+
+-- CURTIME
+-- Returns the current time.
+
+SELECT CURTIME();
+
+-- DATE_FORMAT
+-- Formats a date.
+
+SELECT DATE_FORMAT(NOW(), '%Y-%m-%d');
+
+-- DATE_ADD
+-- Adds a time/date interval to a date.
+
+SELECT DATE_ADD(NOW(), INTERVAL 1 DAY);
+
+-- DATE_SUB
+-- Subtracts a time/date interval from a date.
+
+SELECT DATE_SUB(NOW(), INTERVAL 1 DAY);
+
+-- DATEDIFF
+-- Returns the number of days between two dates.
+
+SELECT DATEDIFF('2024-12-31', '2024-01-01');
+
+-- YEAR
+-- Extracts the year part of a date.
+
+SELECT YEAR(NOW());
+
+-- MONTH
+-- Extracts the month part of a date.
+
+SELECT MONTH(NOW());
+
+-- DAY
+-- Extracts the day part of a date.
+
+SELECT DAY(NOW());
+
+-- HOUR
+-- Extracts the hour part of a time.
+
+SELECT HOUR(NOW());
+
+-- MINUTE
+-- Extracts the minute part of a time.
+
+SELECT MINUTE(NOW());
+
+-- SECOND
+-- Extracts the second part of a time.
+
+SELECT SECOND(NOW());
+
+-- TIMESTAMPDIFF
+-- Returns the difference between two timestamps.
+
+SELECT TIMESTAMPDIFF(MINUTE, '2024-01-01 00:00:00', NOW());
+
+-- IFNULL
+-- Returns a specified value if the expression is NULL.
+
+SELECT IFNULL(Salary, 0)
+FROM Employees;
+
+-- CONCAT
+-- Concatenates two or more strings.
+
+SELECT CONCAT(FirstName, ' ', LastName)
+FROM Employees;
+
+-- IF
+-- Returns a value based on a condition.
+
+SELECT Name, IF(Age > 30, 'Senior', 'Junior')
+FROM Employees;
+
+-- EXISTS
+-- Checks for the existence of any record in a subquery.
+
+SELECT * FROM Employees
+WHERE EXISTS
+(SELECT 1 FROM Departments WHERE
+Employees.DeptID = Departments.ID);
+
+-- ALL
+-- Compares a value to all values in another value set.
+
+SELECT * FROM Employees
+WHERE Salary > ALL (SELECT Salary FROM
+Employees WHERE Department = 'HR');
+
+
+-- ANY
+-- Compares a value to any value in another value set.
+
+SELECT * FROM Employees
+WHERE Salary > ANY (SELECT Salary
+FROM Employees WHERE Department = 'HR');
+
+-- SOME
+-- Synonym for ANY.
+
+SELECT * FROM Employees
+WHERE Salary > SOME (SELECT Salary FROM
+Employees WHERE Department = 'HR');
+
+-- SUBQUERY
+-- A query nested inside another query.
+
+SELECT * FROM Employees
+WHERE DeptID = (SELECT ID FROM
+Departments WHERE Name = 'HR');
+
+-- CORRELATED SUBQUERY
+-- A subquery that references columns from the outer query.
+
+SELECT Name FROM Employees E1
+WHERE Salary > (SELECT AVG(Salary) FROM
+Employees E2 WHERE E1.DeptID = E2.DeptID);
+
+-- VIEW
+-- A virtual table based on the result-set of an SQL statement.
+
+CREATE VIEW EmployeeView
+AS
+SELECT Name, Age FROM Employees;
+
+-- INDEX
+-- Used to speed up the performance of queries.
+
+CREATE INDEX idx_name ON Employees (Name);
+
+-- TRIGGER
+--Executes a batch of SQL code when an insert, update or delete command is run against a specific table.
+
+CREATE TRIGGER trg_after_insert
+ON Employees AFTER INSERT
+AS
+BEGIN PRINT 'New Employee Inserted'; END;
+
+-- PROCEDURE
+-- A stored subroutine available to applications accessing a relational database system.
+
+CREATE PROCEDURE GetEmployee @ID int
+AS
+BEGIN
+SELECT * FROM Employees WHERE ID = @ID;
+END;
+
+-- FUNCTION
+-- A subroutine available to applications accessing a relational database system that returns a single value.
+
+CREATE FUNCTION GetEmployeeName (@ID int)
+RETURNS varchar(255)
+AS
+BEGIN
+DECLARE @Name varchar(255);
+SELECT @Name = Name FROM Employees
+WHERE ID = @ID; RETURN @Name;
+END;
+
+-- CURSOR
+-- A database object used to retrieve data row-by-row.
+
+DECLARE cursor_name
+CURSOR FOR SELECT Name FROM Employees;
+
+-- FETCH
+-- Retrieves rows one at a time, or in a block, from the result set of a multi-row query.
+
+FETCH NEXT FROM cursor_name INTO @Name;
+
+-- CLOSE
+-- Closes the cursor and releases the
+current result set.
+CLOSE cursor_name;
+
+-- DEALLOCATE
+-- Removes a cursor reference and releases resources.
+
+DEALLOCATE cursor_name;
+
+-- DECLARE
+-- Declares a variable or cursor.
+
+DECLARE @Age int;
+
+-- SET
+-- Initializes or assigns a value to a variable.
+
+SET @Age = 30;
+
+-- PRINT
+-- Displays a user-defined message.
+
+PRINT 'Hello SQL';
+
+-- RAISERROR
+-- Returns a user-defined error message.
+
+RAISERROR('This is an error message', 16, 1);
+
+-- TRY...CATCH
+-- Handles exceptions in T-SQL code.
+
+BEGIN TRY;
+SELECT 1/0;
+END TRY
+BEGIN CATCH;
+PRINT 'Error';
+END CATCH;
+
+-- TRANSACTION
+-- A sequence of operations performed as a single logical unit of work.
+
+BEGIN TRANSACTION;
+UPDATE Employees SET Age = 30
+WHERE Name = 'John';
+COMMIT;
+
+-- COMMIT
+-- Saves the changes made in the transaction.
+
+COMMIT TRANSACTION;
+
+-- ROLLBACK
+-- Undoes the changes made in the transaction.
+
+ROLLBACK TRANSACTION;
+
+-- SAVEPOINT
+--Sets a point within a transaction to which a rollback can occur.
+
+SAVE TRANSACTION savepoint_name;
+
+-- SET TRANSACTION ISOLATION LEVEL
+-- Sets the isolation level for the current session.
+
+SET TRANSACTION ISOLATION LEVEL READ
+COMMITTED;
+
+-- BULK INSERT
+-- Imports a large amount of data into a table.
+
+BULK INSERT Employees
+FROM 'datafile.txt'
+WITH
+(FIELDTERMINATOR = ',', ROWTERMINATOR = '\n');
+
+-- TEMPORARY TABLE
+-- A table that is created and can be automatically deleted when no longer used.
+
+CREATE TABLE #TempTable
+(ID int, Name varchar(255));
+
+-- RECURSIVE CTE
+-- Common Table Expressions that refer to themselves.
+
+WITH RECURSIVE CTE
+AS (
+SELECT 1 AS n
+UNION ALL SELECT n+1
+FROM CTE
+WHERE n < 10)
+SELECT * FROM CTE;
+
+-- WINDOW FUNCTION
+-- Performs a calculation across a set of table rows related to the current row.
+
+SELECT Name, Salary,
+AVG(Salary) OVER (PARTITION BY Department)
+FROM Employees;
+
+-- RANK
+-- Assigns a rank to each row within the partition of a result set.
+
+SELECT Name, Salary,
+RANK() OVER (ORDER BY Salary DESC)
+FROM Employees;
+
+-- DENSE_RANK
+-- Assigns ranks to rows in an ordered partition without gaps in rank values.
+
+SELECT Name, Salary,
+DENSE_RANK() OVER (ORDER BY Salary DESC)
+FROM Employees;
+
+-- ROW_NUMBER
+-- Assigns a unique sequential integer to rows within a partition.
+
+SELECT Name, Salary,
+ROW_NUMBER() OVER (ORDER BY Salary DESC)
+FROM Employees;
+
+-- NTILE
+-- Distributes rows of an ordered partition into a specified number of groups.
+
+SELECT Name, Salary,
+NTILE(4) OVER (ORDER BY Salary DESC)
+FROM Employees;
+
+-- LAG
+-- Accesses data from a previous row in the same result set.
+
+SELECT Name, Salary,
+LAG(Salary, 1) OVER (ORDER BY Salary)
+FROM Employees;
+
+-- LEAD
+-- Accesses data from a subsequent row in the same result set.
+
+SELECT Name, Salary,
+LEAD(Salary, 1) OVER (ORDER BY Salary)
+FROM Employees;
+
+-- CROSS APPLY
+-- Applies a table-valued function to each row of an outer table.
+
+SELECT * FROM Employees
+CROSS APPLY
+GetEmployeeDetails(Employees.ID);
+
+-- OUTER APPLY
+-- Similar to CROSS APPLY, but returns all rows from the outer table.
+
+SELECT * FROM Employees
+OUTER APPLY
+GetEmployeeDetails(Employees.ID);
