@@ -1,0 +1,44 @@
+{
+    "google_project": "vf-grp-gbissdbx-dev-1clear",
+    "bucket_name": "sumitbucket95"
+    
+    "query_params_dict": {
+        "raw_data": "data/Ro_IBRO_input.csv",
+        "cltv_data": "data/cltv.csv"
+    },
+    "llm_models": {
+        "code_generation_llm": "chat-bison-32k",
+        "text_generation_llm": "gemini-1.5-flash-001",
+        "code_entity_extract_llm": "gemini-1.0-pro-002"
+    },
+    "model_config_parameters": {
+        "code_gen_model": {
+            "max_output_tokens": 1024,
+            "temperature": 0.2,
+            "top_p": 0.8,
+            "top_k": 40
+        },
+        "text_gen_model": {
+            "max_output_tokens": 8092,
+            "temperature": 0.6,
+            "top_p": 0.95
+        },
+        "plot_desc_model": {
+            "max_output_tokens": 2048,
+            "temperature": 0.3,
+            "top_p": 0.7
+        },
+        "entity_extract_model": {
+            "max_output_tokens": 256,
+            "temperature": 0,
+            "top_p": 0.8
+        },
+        "chat_summary_model": {
+            "max_output_tokens": 2048,
+            "temperature": 0.7,
+            "top_p": 0.4,
+            "top_k": 32
+        }
+    },
+    "max_consumed_token_limit": 15000
+}
